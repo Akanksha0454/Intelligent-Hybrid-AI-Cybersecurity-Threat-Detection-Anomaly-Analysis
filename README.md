@@ -65,14 +65,18 @@ The dynamic cyber-attack landscape requires advanced methods for effective threa
 ## Project Structure
 
 project/
-├── HybridThreatDetection/
-├── admins/
-├── users/
-├── assets/
-├── manage.py
-├── train_model.py
-├── requirements.txt
-├── README.md
+├── HybridThreatDetection/   
+├── admins/                  
+├── users/                   
+├── assets/                  
+├── media/                    # Stored externally (see README)
+├── manage.py                
+├── train_model.py          
+├── requirements.txt        
+├── README.md               
+├── HOW_TO_RUN.md           
+├── LICENSE                 
+├── .gitignore              
 
 ---
 
