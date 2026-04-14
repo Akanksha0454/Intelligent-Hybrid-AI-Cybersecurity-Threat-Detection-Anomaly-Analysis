@@ -111,7 +111,7 @@ The proposed hybrid AI framework provides a robust and efficient solution for cy
 ---
 
 ## Author
-Talakila Valapil Akanksha
+Akanksha Talakila Valapil
 
 ---
 
