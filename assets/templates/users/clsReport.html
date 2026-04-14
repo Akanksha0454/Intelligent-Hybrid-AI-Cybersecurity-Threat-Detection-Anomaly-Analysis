@@ -1,0 +1,15 @@
+{% extends 'users/userbase.html'%}
+{%load static%}
+{%block contents%}
+<section id="home">
+    <center>
+        <h2>Classification Report</h2>
+
+        {{data|safe}}
+
+    </center>
+
+
+</section>
+
+{%endblock%}

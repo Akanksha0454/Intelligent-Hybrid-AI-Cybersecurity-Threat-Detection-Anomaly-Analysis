@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dataset Viewer</title>
+
+<style>
+:root {
+    --primary-color: #1e3a8a;
+    --accent-color: #3b82f6;
+    --bg-color: #f1f5f9;
+}
+
+body {
+    font-family: Arial;
+    background: var(--bg-color);
+    margin: 0;
+}
+
+/* Navbar */
+
+header {
+    background: linear-gradient(to right,#1e3a8a,#3b82f6);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Content */
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: var(--accent-color);
+    text-align: center;
+}
+
+/* Table */
+
+.table-container {
+    overflow-x: auto;
+    max-height: 500px;
+    overflow-y: scroll;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: var(--primary-color);
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    margin-top: 2rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Cyber Security Dataset Dashboard</h1>
+
+<nav>
+<ul>
+            <li><a href="{% url 'UserHome' %}">Home</a></li>
+            <li><a href="{% url 'dataset_view' %}">Dataset</a></li>
+           
+            <li><a href="{% url 'predict_view' %}">Predict Threat</a></li>
+          
+            <li><a href="{% url 'usr_classification' %}">Classification</a></li>
+
+            <li><a href="{% url 'index' %}">Logout</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<div class="card">
+
+<h2>Network Traffic Dataset</h2>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+{% for col in columns %}
+<th>{{ col }}</th>
+{% endfor %}
+</tr>
+
+{% for row in dataset %}
+<tr>
+{% for value in row.values %}
+<td>{{ value }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</main>
+
+<footer>
+© 2026 Cyber AI Solutions
+</footer>
+
+</body>
+</html>

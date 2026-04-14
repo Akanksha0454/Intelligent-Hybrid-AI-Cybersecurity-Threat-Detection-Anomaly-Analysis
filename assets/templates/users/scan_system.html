@@ -1,0 +1,66 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block contents %}
+<section id="home" class="p-4">
+
+    <h2 class="text-3xl font-bold mb-6 text-gray-800">📡 Live Threat Detection</h2>
+
+    <div class="overflow-y-scroll max-h-[500px] border rounded-lg shadow-lg">
+        <table class="min-w-full text-sm text-left border border-gray-300 bg-white">
+            <thead class="bg-blue-100 text-gray-800 sticky top-0 z-10">
+                <tr>
+                    <th class="px-4 py-2 border">#</th>
+                    <th class="px-4 py-2 border">Verdict</th>
+                    <th class="px-4 py-2 border">Threat Name</th>
+                    <th class="px-4 py-2 border">Destination IP</th>
+                    <th class="px-4 py-2 border">Port</th>
+                    <th class="px-4 py-2 border">Service</th>
+                </tr>
+            </thead>
+            <tbody id="threats" class="text-gray-700">
+                <tr>
+                    <td colspan="6" class="text-center px-4 py-3 text-gray-500">Waiting for live threats...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const threatBox = document.getElementById('threats');
+        const evtSource = new EventSource("/stream/");
+        let threatCount = 1;
+
+        evtSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+
+            if (threatCount === 1) {
+                threatBox.innerHTML = "";  // Clear the initial message
+            }
+
+            const row = document.createElement('tr');
+
+            // Assign row color based on verdict
+            let bgClass = '';
+            if (data.verdict.includes("⚠️")) {
+                bgClass = 'bg-red-100';
+            } else if (data.verdict.includes("✅")) {
+                bgClass = 'bg-green-100';
+            }
+
+            row.className = `${bgClass} hover:bg-gray-50 transition duration-200`;
+
+            row.innerHTML = `
+                <td class="px-4 py-2 border">${threatCount++}</td>
+                <td class="px-4 py-2 border font-semibold">${data.verdict}</td>
+                <td class="px-4 py-2 border">${data.threat_name}</td>
+                <td class="px-4 py-2 border">${data.dst_ip}</td>
+                <td class="px-4 py-2 border">${data.dst_port}</td>
+                <td class="px-4 py-2 border">${data.service}</td>
+            `;
+
+            threatBox.appendChild(row);
+        };
+    </script>
+
+</section>
+{% endblock %}

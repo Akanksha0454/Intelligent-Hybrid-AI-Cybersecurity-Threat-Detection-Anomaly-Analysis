@@ -1,0 +1,177 @@
+{% extends 'admins/adminbase.html' %}
+{% load static %}
+{% block contents %}
+<section id="home">
+    <h1 class="page-title">Registered Users</h1>
+    <div class="table-container">
+        <table class="data-table">
+            <thead class="table-header">
+            <tr>
+                <th class="table-header-cell">S.No</th>
+                <th class="table-header-cell">Name</th>
+                <th class="table-header-cell">Login ID</th>
+                <th class="table-header-cell">Mobile</th>
+                <th class="table-header-cell">Email</th>
+                <th class="table-header-cell">Locality</th>
+                <th class="table-header-cell">Status</th>
+                <th class="table-header-cell">Action</th>
+            </tr>
+            </thead>
+            <tbody class="table-body">
+            {% for user in data %}
+            <tr class="table-row">
+                <td class="table-cell text-center">{{ forloop.counter }}</td>
+                <td class="table-cell text-center">{{ user.name }}</td>
+                <td class="table-cell text-center">{{ user.loginid }}</td>
+                <td class="table-cell text-center">{{ user.mobile }}</td>
+                <td class="table-cell text-center">{{ user.email }}</td>
+                <td class="table-cell text-center">{{ user.locality }}</td>
+                <td class="table-cell text-center">
+                    {% if user.status == 'waiting' %}
+                    <span class="status-badge status-waiting">Waiting</span>
+                    {% else %}
+                    <span class="status-badge status-active">Active</span>
+                    {% endif %}
+                </td>
+                <td class="table-cell text-center">
+                    {% if user.status == 'waiting' %}
+                    <a href="/ActivaUsers/?uid={{ user.id }}" class="action-link action-activate">Activate</a>
+                    {% else %}
+                    <span class="action-text action-activated">Activated</span>
+                    <a href="/DeleteUsers/?uid={{ user.id }}" class="action-link action-delete">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<style>
+    .main-content {
+        padding: 20px;
+        min-height: 80vh;
+        background-color: #f9fafb;
+    }
+
+    .content-section {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #1e293b;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        margin-top: 20px;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #f1f5f9;
+    }
+
+    .table-header {
+        background-color: #f0f4f8;
+        color: #4b5563;
+        text-align: center;
+    }
+    .table-header-cell{
+            padding: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-bottom: 2px solid #e2e8f0;
+    }
+
+
+    .table-body .table-row:nth-child(odd) {
+        background-color: #f7fafc;
+    }
+
+    .table-body .table-row:nth-child(even) {
+        background-color: #fff;
+    }
+
+    .table-cell {
+        padding: 12px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    .table-row:hover {
+        background-color: #edf2f7;
+        transition: background-color 0.3s ease;
+    }
+
+    .status-badge {
+        padding: 6px 12px;
+        border-radius: 16px;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .status-waiting {
+        background-color: #fef08a;
+        color: #1e293b;
+    }
+
+    .status-active {
+        background-color: #ecfccb;
+        color: #15803d;
+    }
+
+    .action-link {
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .action-activate {
+        background-color: #3b82f6;
+        color: #fff;
+    }
+
+    .action-activate:hover {
+        background-color: #2563eb;
+    }
+
+    .action-delete {
+        background-color: #ef4444;
+        color: #fff;
+    }
+
+    .action-delete:hover {
+        background-color: #dc2626;
+    }
+    .action-text{
+        color: #16a34a;
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            min-width: 600px;
+        }
+        .page-title{
+            font-size: 1.8rem;
+        }
+    }
+</style>
+{% endblock %}
