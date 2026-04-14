@@ -28,12 +28,12 @@ The dynamic cyber-attack landscape requires advanced methods for effective threa
 
 ---
 
-## Technologies Used
-- Python  
-- Django  
-- Machine Learning  
-- HTML, CSS, JavaScript  
-- SQLite  
+## Technologies Used 
+- Machine Learning
+- Programming Language         : Python
+- Framework                    : Django
+- Frontend Technologies        : HTML, CSS, JavaScript
+- Database                     : SQLite
 
 ---
 
