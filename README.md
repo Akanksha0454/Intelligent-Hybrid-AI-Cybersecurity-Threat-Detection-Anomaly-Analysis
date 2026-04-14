@@ -76,6 +76,14 @@ project/
 
 ---
 
+## Dataset / Media Files
+Due to GitHub file size limitations, the media and dataset files are not included in this repository.
+
+You can access them using the link below:
+🔗 https://drive.google.com/drive/folders/1HsFWajqewXbuVePQ5IEeDEIlK0LvQhOU?usp=sharing
+
+---
+
 ## How to Run
 1. Install Python  
 2. Install required libraries:
