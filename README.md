@@ -65,6 +65,7 @@ The dynamic cyber-attack landscape requires advanced methods for effective threa
 ## Project Structure
 
 project/
+
 ├── HybridThreatDetection/   
 ├── admins/                  
 ├── users/                   
