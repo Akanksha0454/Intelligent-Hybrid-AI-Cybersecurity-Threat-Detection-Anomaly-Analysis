@@ -71,6 +71,7 @@ project/
 ├── users/                   
 ├── assets/                  
 ├── media/                    # Stored externally (see README)
+
 ├── manage.py                
 ├── train_model.py          
 ├── requirements.txt        
